@@ -1,6 +1,11 @@
 from django.db import models
 
 # Create your models here.
+class Category(models.Model):
+    name = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.name
 
 JOB_TYPE=(
     ('Full Time','Full Time'),
@@ -15,6 +20,9 @@ class Job(models.Model): # ===> table in database called Jobs
     vacancy = models.IntegerField(default=1)
     salary = models.IntegerField(default=0)
     experience = models.IntegerField(default=1)
+    category = models.ForeignKey(Category,on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
+
+
